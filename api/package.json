@@ -1,5 +1,5 @@
 {
-  "name": "Chronos",
+  "name": "chronos",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,5 +9,57 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-auth": "^1.4.6",
+    "better-sqlite3": "^12.5.0",
+    "hono": "^4.10.8",
+    "kysely": "^0.28.8",
+    "nanoid": "^5.1.6",
+    "nodemon": "^3.1.11",
+    "pg": "^8.16.3",
+    "zod": "^4.1.13"
+  },
+  "commit-and-tag-version": {
+    "types": [
+      {
+        "type": "feat",
+        "section": "✨ Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Documentation"
+      },
+      {
+        "type": "refactor",
+        "section": "⚙️ Refactor"
+      },
+      {
+        "type": "perf",
+        "section": "⚡ Performance"
+      },
+      {
+        "type": "test",
+        "section": "🧪 Test"
+      },
+      {
+        "type": "chore",
+        "section": "🔧 Chores"
+      }
+    ],
+    "commitUrlFormat": "https://github.com/Beltiston/Chronos/commit/{{hash}}",
+    "compareUrlFormat": "https://github.com/Beltiston/Chronos/compare/{{previousTag}}...{{currentTag}}",
+    "issueUrlFormat": "https://github.com/Beltiston/Chronos/issue/{{id}}"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.1",
+    "commit-and-tag-version": "^12.6.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
 }
