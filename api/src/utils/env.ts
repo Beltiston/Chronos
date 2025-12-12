@@ -5,13 +5,16 @@ const envSchema = z.object({
   CHRONOS_ENV: z.enum(["development", "production", "test"]).default("development"),
 
   // Database
-  CLIENT_ORIGIN: z.string().optional(), // optional in schema
+  DATABASE_ENTRY: z.string().default("/db/main.db"),
+
+  // Auth
+  CLIENT_ORIGIN: z.string().optional(),
   BETTER_AUTH_SECRET: z.string(),
   BETTER_AUTH_URL: z
     .string()
     .refine(
-      (v) => v.startsWith("/") || v.startsWith("http://") || v.startsWith("https://"),
-      "BETTER_AUTH_URL must be a URL or a path starting with /"
+      (v) => v.startsWith("http://") || v.startsWith("https://"),
+      "BETTER_AUTH_URL must be a URL"
     ),
     
   // Auth-related
