@@ -1,5 +1,13 @@
 {
+  "files.exclude": {
+    "**/.git": true,
+  },
   "cSpell.words": [
-    "chronos"
-  ]
+    "chronos",
+    "DOTENV",
+    "dotenvx",
+    "kysely"
+  ],
+  "license.author": "Beltiston",
+  "license.year": "auto"
 }
