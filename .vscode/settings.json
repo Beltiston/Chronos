@@ -3,10 +3,13 @@
     "**/.git": true,
   },
   "cSpell.words": [
+    "AUTOINCREMENT",
     "chronos",
     "DOTENV",
     "dotenvx",
-    "kysely"
+    "kysely",
+    "pgcrypto",
+    "pgsql"
   ],
   "license.author": "Beltiston",
   "license.year": "auto"
