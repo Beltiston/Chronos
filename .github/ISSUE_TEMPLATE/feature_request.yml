@@ -1,0 +1,90 @@
+# yamllint disable rule:line-length
+---
+name: 💡 Feature Request
+description: Suggest an improvement or new capability for the API
+title: "[Feature] <brief title>"
+labels: [enhancement]
+assignees:
+  - Dark-LYNN
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Feature Request
+        Thank you for taking the time to suggest an improvement!
+        Please be as specific as possible.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: |
+        Example:
+        "There is currently no way to rotate API tokens without downtime."
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature or behavior you would like to see.
+      placeholder: |
+        Example:
+        "Add an endpoint that allows issuing a secondary token with an expiration period."
+
+  - type: textarea
+    id: api-design
+    attributes:
+      label: API Design (if applicable)
+      description: Suggest endpoints, request/response formats, or behavior.
+      placeholder: |
+        Example:
+        POST /v1/tokens/rotate
+        Response:
+        {
+          "token": "..."
+        }
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or workarounds.
+      placeholder: |
+        Example:
+        "Manually deleting tokens and re-authenticating all clients."
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: User Impact
+      description: Who benefits from this feature and how?
+      placeholder: |
+        Example:
+        "Improves security for long-running services without requiring restarts."
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Would this be a breaking change?
+      description: Does this feature require changing existing API behavior?
+      options:
+        - "No"
+        - "Yes"
+        - "Not sure"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add diagrams, mockups, or examples if helpful.
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📌 Notes
+        - Feature requests may take time to evaluate and prioritize
+        - Backwards compatibility is a key consideration
+        - Not all requests can be accepted

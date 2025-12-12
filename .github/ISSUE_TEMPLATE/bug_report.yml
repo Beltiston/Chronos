@@ -1,0 +1,110 @@
+# yamllint disable rule:line-length
+---
+name: 🐛 Bug Report
+description: Report an API issue or unexpected behavior
+title: "[Bug] <brief title>"
+labels: [bug]
+assignees:
+  - Dark-LYNN
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Bug Report
+        Please provide as much detail as possible so we can reproduce and fix the issue quickly.
+
+  - type: textarea
+    id: describe-bug
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of the issue.
+      placeholder: What’s going wrong?
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Exact steps to reproduce the issue.
+      placeholder: |
+        1. Endpoint: POST /v1/heartbeats
+        2. Request payload (JSON)
+        3. Authentication method (if any)
+        4. Expected response
+        5. Actual response
+        6. Does this happen every time? (Yes / No)
+
+  - type: textarea
+    id: request-details
+    attributes:
+      label: Request Details
+      description: Include request headers, body, and query parameters if relevant.
+      placeholder: |
+        Headers:
+        Authorization: Bearer <token>
+
+        Body:
+        {
+          "example": "value"
+        }
+
+  - type: textarea
+    id: response-details
+    attributes:
+      label: Response Details
+      description: Paste the response body, status code, and error ID (if present).
+      placeholder: |
+        Status: 500
+        Response:
+        {
+          "success": false,
+          "error": {
+            "id": "INTERNAL_ERROR",
+            "message": "Something went wrong"
+          }
+        }
+
+  - type: dropdown
+    id: database-type
+    attributes:
+      label: Database Type
+      description: Which database backend are you using?
+      options:
+        - SQLite
+        - PostgreSQL
+        - Not sure
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Environment where the bug occurred
+      placeholder: "local / staging / production"
+
+  - type: input
+    id: api-version
+    attributes:
+      label: API Version
+      description: API version used (if applicable)
+      placeholder: "v1"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Logs, screenshots, or anything else that may help.
+
+  - type: textarea
+    id: possible-solution
+    attributes:
+      label: Possible Solution (optional)
+      description: If you have an idea of what might be wrong, share it here.
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📌 Before Submitting
+        - Ensure you are using the **latest API version**
+        - Verify your request payload matches the documentation
+        - Search for **existing issues** to avoid duplicates
