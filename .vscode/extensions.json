@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dotenv.dotenvx-vscode",
+    "cschlosser.doxdocgen",
+    "usernamehw.errorlens",
+    "aaron-bond.better-comments",
+    "yzhang.markdown-all-in-one",
+    "jnoortheen.nix-ide",
+    "christian-kohler.path-intellisense"
+  ]
+}
