@@ -1,0 +1,35 @@
+# GitHub Actions: verify Nix flake can be built (no tests)
+name: Nix flake build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-flake:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix (multi-user / daemon)
+        run: |
+          curl -L https://nixos.org/nix/install | sh -s -- --daemon
+          # Source Nix profile for this session
+          if [ -e /etc/profile.d/nix.sh ]; then
+            . /etc/profile.d/nix.sh
+          elif [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+            . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+          fi
+
+      - name: Enable flakes
+        run: |
+          sudo mkdir -p /etc/nix
+          echo "experimental-features = nix-command flakes" | sudo tee /etc/nix/nix.conf
+
+      - name: Show flake (diagnostic)
+        run: nix flake show
+
+      - name: Build pinned dev shell (x86_64-linux)
+        run: nix build .#devShells.x86_64-linux.default --no-link

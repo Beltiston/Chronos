@@ -61,6 +61,11 @@
       {
         "type": "chore",
         "section": "🔧 Chores"
+      },
+      {
+        "type": "ci",
+        "section": "🤖 Integration",
+        "hidden": true
       }
     ],
     "commitUrlFormat": "https://github.com/Beltiston/Chronos/commit/{{hash}}",
