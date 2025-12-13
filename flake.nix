@@ -13,6 +13,7 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nodejs_22
+            pnpm
             python312
             sqlite
           ];
