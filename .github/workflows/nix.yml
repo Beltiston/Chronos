@@ -29,7 +29,9 @@ jobs:
           echo "experimental-features = nix-command flakes" | sudo tee /etc/nix/nix.conf
 
       - name: Show flake (diagnostic)
-        run: nix flake show
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh || . /etc/profile.d/nix.sh
+          nix flake show
 
       - name: Build pinned dev shell (x86_64-linux)
         run: nix build .#devShells.x86_64-linux.default --no-link
