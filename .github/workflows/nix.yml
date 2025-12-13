@@ -1,5 +1,7 @@
 # GitHub Actions: verify Nix flake can be built (no tests)
 name: Nix flake build
+permissions:
+  contents: read
 
 on:
   push:
