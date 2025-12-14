@@ -60,9 +60,9 @@ Migrations are stored by database type:
 
 ```pgsql
 /database/migration/sqlite/
-  001_Create_Database.sql
+  001_create_database.sql
 /database/migration/postgres/
-  001_Create_Database.sql
+  001_create_database.sql
 ```
 
 The correct folder is selected automatically based on `DATABASE_ENTRY`.
