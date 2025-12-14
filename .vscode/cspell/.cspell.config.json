@@ -1,0 +1,34 @@
+{
+  "words": [
+    "AUTOINCREMENT",
+    "Beltiston",
+    "cctools",
+    "chronos",
+    "direnv",
+    "DOTENV",
+    "dotenvx",
+    "fetchgit",
+    "fetchurl",
+    "kysely",
+    "Lynnux",
+    "pgcrypto",
+    "pgsql",
+    "stdenv",
+    "subproject",
+    "timespent",
+    "utillinux"
+  ],
+  "ignorePaths": [
+    "package-lock.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/{info,lfs,logs,refs,objects}/**",
+    ".git/{index,*refs,*HEAD}",
+    ".vscode",
+    ".vscode-insiders",
+    "dist/**",
+    ".gitignore",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+  ]
+}
