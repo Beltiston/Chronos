@@ -1,14 +1,15 @@
 import Database from "better-sqlite3";
 import fs from "fs";
 import path from "path";
-import { env } from "../src/utils/env"
+import { env } from "../src/utils/env";
 
 // ----------------------
 // Configuration
 // ----------------------
 const DATABASE_ENTRY = env.DATABASE_ENTRY!;
 const MIGRATION_TYPE = getDatabaseType(DATABASE_ENTRY);
-const dbPath = MIGRATION_TYPE === "sqlite" ? getSQLitePath(DATABASE_ENTRY) : DATABASE_ENTRY;
+const dbPath =
+  MIGRATION_TYPE === "sqlite" ? getSQLitePath(DATABASE_ENTRY) : DATABASE_ENTRY;
 const migrationsDir = path.resolve("db", "migrations", MIGRATION_TYPE);
 const db = new Database(dbPath);
 
@@ -27,8 +28,10 @@ db.exec(`
 // Helpers
 // ----------------------
 function getAppliedMigrations(): Set<string> {
-  const rows = db.prepare("SELECT filename FROM Migrations").all() as { filename: string }[];
-  return new Set(rows.map(r => r.filename));
+  const rows = db.prepare("SELECT filename FROM Migrations").all() as {
+    filename: string;
+  }[];
+  return new Set(rows.map((r) => r.filename));
 }
 
 function runMigration(file: string) {
@@ -72,15 +75,15 @@ function getSQLitePath(entry: string): string {
 // Commands
 // ----------------------
 function createDB() {
-  const first = "001_Create_Database.sql";
+  const first = "001_create_database.sql";
   runMigration(first);
 }
 
 function migrate() {
   const applied = getAppliedMigrations();
-  const files = fs.readdirSync(migrationsDir).filter(f => f.endsWith(".sql"));
+  const files = fs.readdirSync(migrationsDir).filter((f) => f.endsWith(".sql"));
 
-  const newMigrations = files.filter(f => !applied.has(f)).sort();
+  const newMigrations = files.filter((f) => !applied.has(f)).sort();
 
   if (newMigrations.length === 0) {
     console.log("✨ No new migrations.");
@@ -114,4 +117,3 @@ DB Scripts:
   npm run db           → Show this help screen
 `);
 }
-
