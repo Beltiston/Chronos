@@ -26,6 +26,9 @@ importers:
       hono:
         specifier: ^4.10.8
         version: 4.11.0
+      hono-rate-limiter:
+        specifier: 0.5.0
+        version: 0.5.0(hono@4.11.0)
       kysely:
         specifier: ^0.28.8
         version: 0.28.9
@@ -1173,6 +1176,15 @@ packages:
 
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==, tarball: https://registry.npmjs.org/help-me/-/help-me-5.0.0.tgz}
+
+  hono-rate-limiter@0.5.0:
+    resolution: {integrity: sha512-Cps4udhDdPQ3O1Dm1fOzunI1iN1fW3TcVj1YvPdIjxHiHRitTsEz05q+BjgnLtcVDaDGbyuYyBaAxIy1DD1bMw==, tarball: https://registry.npmjs.org/hono-rate-limiter/-/hono-rate-limiter-0.5.0.tgz}
+    peerDependencies:
+      hono: ^4.10.8
+      unstorage: ^1.17.3
+    peerDependenciesMeta:
+      unstorage:
+        optional: true
 
   hono@4.11.0:
     resolution: {integrity: sha512-Jg8uZzN2ul8/qlyid5FO8O624F3AK0wKtkgoeEON1qBum1rM1itYBxoMKu/1SPJC7F1+xlIZsJMmc4HHhJ1AWg==, tarball: https://registry.npmjs.org/hono/-/hono-4.11.0.tgz}
@@ -3008,6 +3020,10 @@ snapshots:
       function-bind: 1.1.2
 
   help-me@5.0.0: {}
+
+  hono-rate-limiter@0.5.0(hono@4.11.0):
+    dependencies:
+      hono: 4.11.0
 
   hono@4.11.0: {}
 

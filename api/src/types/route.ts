@@ -14,4 +14,9 @@ export interface RouteConfig {
   roles?: ("user" | "moderator" | "admin")[];
   handler: (c: Context) => Promise<Response>;
   schema?: any;
+  rateLimit?: {
+    windowMs?: number;
+    limit?: number;
+    message?: string;
+  };
 }

@@ -5,6 +5,7 @@ import fs from "fs";
 import { Method, RouteConfig } from "@/types/route";
 import { logger } from "./logger.js";
 import { requireUser } from "../middleware/requireUser.js";
+import { createRateLimiter } from "../middleware/rateLimit.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,6 +68,18 @@ export async function registerRoutes(
 
         if (route.private) {
           middlewares.push(requireUser({ roles: route.roles }));
+        }
+
+        if (route.rateLimit) {
+          middlewares.push(
+            createRateLimiter(
+              route.rateLimit ?? {
+                windowMs: 15 * 60 * 1000, // 15 minutes
+                limit: 100, // Limit each user to 100 requests per windowMs
+                message: "Too many requests, please try again after 15 minutes",
+              }
+            )
+          );
         }
 
         const methodName = Object.keys(Method).find(
