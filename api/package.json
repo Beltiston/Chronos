@@ -11,6 +11,8 @@
     "db": "dotenvx run -- tsx scripts/database.ts",
     "db:create": "dotenvx run -- tsx scripts/database.ts create",
     "db:migrate": "dotenvx run -- tsx scripts/database.ts migrate",
+    "auth:generate": "NODE_OPTIONS='-r tsconfig-paths/register' dotenvx run -- better-auth generate --config ./src/auth.ts",
+    "auth:migrate": "NODE_OPTIONS='-r tsconfig-paths/register' dotenvx run -- better-auth migrate --config ./src/auth.ts",
     "dev": "dotenvx run -- nodemon --watch src --ext ts,tsx --exec tsx -r tsconfig-paths/register src/index.ts",
     "start": "node -r tsconfig-paths/register dist/src/index.js",
     "release": "commit-and-tag-version",
@@ -38,6 +40,7 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@better-auth/cli": "1.4.7",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.0.1",
     "commit-and-tag-version": "^12.6.1",

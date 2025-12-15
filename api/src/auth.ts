@@ -7,14 +7,11 @@ import { env } from "@/utils/env";
 export type Auth = ReturnType<typeof betterAuth>;
 
 export const auth: Auth = betterAuth({
-  database: new Database("auth.db"),
+  database: new Database("./db/auth.db"),
   trustedOrigins: [env.CLIENT_ORIGIN],
   emailAndPassword: {
     enabled: true,
     disableSignUp: env.DISABLE_REGISTRATION === true,
   },
-  plugins: [
-    bearer(),
-  ],
+  plugins: [bearer()],
 });
-
