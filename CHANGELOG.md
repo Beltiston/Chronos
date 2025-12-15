@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.3](https://github.com/Beltiston/Chronos/compare/v0.1.2...v0.1.3) (2025-12-15)
+
+
+### ✨ Features
+
+* **api:** add user registration route with input validation and email existence checks, and update error definitions. ([3d4cfe2](https://github.com/Beltiston/Chronos/commit/3d4cfe2351da444cdc456db8894952810c9d5773))
+* **api:** Added a ratelimit to the command handler. ([c681011](https://github.com/Beltiston/Chronos/commit/c681011e79f3fe6fd84991cf0ecdeb6c94e2d835))
+* **api:** Created customError to have more consistent error messaging. ([f07301c](https://github.com/Beltiston/Chronos/commit/f07301cb28df314d073c3f12710bebd6048b8ffc))
+* **api:** implement OAuth instance management with new database schema, utilities, and API routes, and refactor user creation. ([07c2180](https://github.com/Beltiston/Chronos/commit/07c21802b37d747b7724068ce381a18adcd26ffc))
+* **api:** Implement user registration with username validation, email regex, and a disable registration flag, while centralizing auth database connections and types. ([7f97110](https://github.com/Beltiston/Chronos/commit/7f971101394cd733c4964de400befecf23073597))
+* Initialize `better-auth` by adding CLI scripts, updating the database path, and generating the initial migration schema. ([4c1f9a2](https://github.com/Beltiston/Chronos/commit/4c1f9a213a1997ce0636018db81d56e7155dcee3))
+
+
+### ⚙️ Refactor
+
+* migrate authentication to use JWTs, update auth endpoints, and add invalid credentials error. ([04574e9](https://github.com/Beltiston/Chronos/commit/04574e953f20a14e87cfe52a935c77ba5c1650f1))
+
+
+### 🔧 Chores
+
+* **deps:** bump actions/checkout from 2 to 6 ([3b560f9](https://github.com/Beltiston/Chronos/commit/3b560f947dd4477ae1700e271b2a7c60644c8460))
+* **deps:** bump actions/setup-node from 2 to 6 ([66c55b4](https://github.com/Beltiston/Chronos/commit/66c55b4552498395f69618abb161f94cb283c780))
+
 ## [0.1.2](https://github.com/Beltiston/Chronos/compare/v0.1.1...v0.1.2) (2025-12-15)
 
 ### ✨ Features
