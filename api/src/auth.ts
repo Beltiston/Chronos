@@ -4,7 +4,9 @@ import Database from "better-sqlite3";
 
 import { env } from "@/utils/env";
 
-export const auth = betterAuth({
+export type Auth = ReturnType<typeof betterAuth>;
+
+export const auth: Auth = betterAuth({
   database: new Database("auth.db"),
   trustedOrigins: [env.CLIENT_ORIGIN],
   emailAndPassword: {
@@ -15,3 +17,4 @@ export const auth = betterAuth({
     bearer(),
   ],
 });
+
