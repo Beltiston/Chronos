@@ -104,5 +104,9 @@
       "language": "typescript",
       "mapTo": "javascript"
     }
-  ]
+  ],
+  // AGQ
+  "agq.enabled": true,
+  "agq.pollingInterval": 120,
+  "agq.showPromptCredits": false,
 }

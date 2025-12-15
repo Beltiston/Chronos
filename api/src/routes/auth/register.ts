@@ -51,7 +51,7 @@ const register: RouteConfig = {
     }
 
     try {
-      const user = await auth.api.signUpEmail({
+      const authUser = await auth.api.signUpEmail({
         body: {
           name,
           email,
@@ -59,11 +59,16 @@ const register: RouteConfig = {
         },
       });
 
+      const user = await db.utils.createUser({
+        username: name,
+        auth_id: authUser.user.id,
+      });
+
       return c.json(
         {
           success: true,
           code: 201,
-          data: user,
+          data: authUser,
         },
         201
       );

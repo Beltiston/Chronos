@@ -1,42 +1,69 @@
-import { GeneratedAlways } from "kysely";
+import { Generated } from "kysely";
+import { OAuthProvider } from "./oauthProvider";
 
 export interface DatabaseSchema {
-  heartbeats: {
-    id: GeneratedAlways<string>; // Generated ID
-    heartbeat_id: string;        // Heartbeat UUID
-    user_id: string;             // user ID
-    entity: string;              // e.g., file path or function name
-    project: string;             // project name
-    language: string | null;     // Project Language
-    editor: string;              // Editor Name
-    machine: string | null;      // machine id
-    timestamp: string;           // ISO date string
-    is_write: number;           // true if user was writing, false if just viewing
-  };
-  machine_tokens: {
-    id: GeneratedAlways<string>;
-    machine_id: string;
-    token: string;                       // generated token for API auth
-    created_at: string;
-    expires_at: string | null;           // expiration
-  };
-  Migrations: {
-    id: GeneratedAlways<number>; //
+  migrations: {
+    id: Generated<number>;
     filename: string;
-    applied_at: string;
-  };
-  projects: {
-    id: GeneratedAlways<number>;
-    user_id: number;
-    name: string;
-    created_at: string;
+    applied_at: Generated<string>;
   };
   users: {
-    id: GeneratedAlways<string>;
+    id: string; // UUID stored as TEXT
     username: string;
-    email: string;
-    password_hash: string;
-    role: 'user' | 'moderator' | 'admin';
-    created_at: string;
+    role: Generated<string>; // 'user' | 'admin'
+    auth_id: string;
+    projects: Generated<string>; // JSON array
+    machines: Generated<string>; // JSON array
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
+  };
+  projects: {
+    id: Generated<number>;
+    projectUUID: string;
+    user_id: string;
+    name: string;
+    users: Generated<string>; // JSON array
+    files: Generated<string>; // JSON array
+    languages: Generated<string>; // JSON array
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
+  };
+  machine: {
+    id: Generated<number>;
+    user_id: string;
+    name: string;
+    operating_system: string;
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
+  };
+  languages: {
+    id: Generated<number>;
+    name: string;
+    project_id: string;
+    user_id: string;
+    timespent: Generated<string>;
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
+  };
+  files: {
+    id: Generated<number>;
+    name: string;
+    location: string;
+    project_id: string;
+    user_id: string;
+    language_id: string;
+    timespent: Generated<string>;
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
+  };
+  oauth_instances: {
+    id: Generated<number>;
+    user_id: string;
+    provider: OAuthProvider;
+    client_id: string;
+    client_secret: string;
+    redirect_uri: string | null;
+    created_at: Generated<string>;
+    updated_at: Generated<string>;
   };
 }

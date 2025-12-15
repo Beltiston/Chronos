@@ -5,7 +5,10 @@ export type ErrorId =
   | "VALIDATION_ERROR"
   | "AUTH_EMAIL_ALREADY_EXISTS"
   | "AUTH_REGISTRATION_DISABLED"
-  | "AUTH_USERNAME_ALREADY_EXISTS";
+  | "AUTH_USERNAME_ALREADY_EXISTS"
+  | "OAUTH_INVALID_PROVIDER"
+  | "OAUTH_INSTANCE_ALREADY_EXISTS"
+  | "OAUTH_INSTANCE_NOT_FOUND";
 
 export interface ErrorDetails {
   id: ErrorId;
@@ -48,5 +51,20 @@ export const ERRORS: Record<ErrorId, ErrorDetails> = {
     id: "INTERNAL_SERVER_ERROR",
     status: 500,
     message: "Internal Server Error",
+  },
+  OAUTH_INVALID_PROVIDER: {
+    id: "OAUTH_INVALID_PROVIDER",
+    status: 400,
+    message: "Invalid OAuth provider",
+  },
+  OAUTH_INSTANCE_ALREADY_EXISTS: {
+    id: "OAUTH_INSTANCE_ALREADY_EXISTS",
+    status: 409,
+    message: "OAuth instance already exists for this provider",
+  },
+  OAUTH_INSTANCE_NOT_FOUND: {
+    id: "OAUTH_INSTANCE_NOT_FOUND",
+    status: 404,
+    message: "OAuth instance not found",
   },
 };
