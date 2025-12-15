@@ -37,3 +37,23 @@ export const createUser = async (
     .executeTakeFirstOrThrow();
   return { id: newUser.id, username: newUser.username, role: newUser.role };
 };
+
+export const getUserById = async (id: string) => {
+  const user = await db.client
+    .selectFrom("users")
+    .selectAll()
+    .where("id", "=", id)
+    .executeTakeFirst();
+
+  return user;
+};
+
+export const getUserByAuthId = async (authId: string) => {
+  const user = await db.client
+    .selectFrom("users")
+    .selectAll()
+    .where("auth_id", "=", authId)
+    .executeTakeFirst();
+
+  return user;
+};

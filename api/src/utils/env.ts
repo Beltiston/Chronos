@@ -19,6 +19,9 @@ const envSchema = z.object({
       "BETTER_AUTH_URL must be a URL"
     ),
 
+  // JWT for API tokens
+  JWT_SECRET: z.string(),
+
   // Auth-related
   DISABLE_REGISTRATION: z
     .string()
