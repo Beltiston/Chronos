@@ -13,6 +13,7 @@
     "Lynnux",
     "pgcrypto",
     "pgsql",
+    "QLTY",
     "stdenv",
     "subproject",
     "timespent",

@@ -1,13 +1,14 @@
 import { betterAuth } from "better-auth";
 import { bearer } from "better-auth/plugins";
-import Database from "better-sqlite3";
 
 import { env } from "@/utils/env";
+
+import { authSqlite, sqlite } from "@/db/auth";
 
 export type Auth = ReturnType<typeof betterAuth>;
 
 export const auth: Auth = betterAuth({
-  database: new Database("./db/auth.db"),
+  database: sqlite,
   trustedOrigins: [env.CLIENT_ORIGIN],
   emailAndPassword: {
     enabled: true,

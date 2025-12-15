@@ -2,10 +2,14 @@ import { z } from "zod";
 import { Method, RouteConfig } from "@/types/route";
 import { auth } from "@/auth";
 import { customError } from "@/utils/errors";
+import { EMAIL_REGEX } from "@/utils/regex";
+import { logger } from "@/utils/logger";
+import { env } from "@/utils/env";
+import db from "@/db";
 
 const registerSchema = z.object({
   name: z.string().min(2),
-  email: z.string().email(),
+  email: z.string().regex(EMAIL_REGEX, "Invalid email format"),
   password: z.string().min(8),
 });
 
@@ -20,6 +24,10 @@ const register: RouteConfig = {
   handler: async (c) => {
     const body = await c.req.json().catch(() => ({}));
     const parsed = registerSchema.safeParse(body);
+
+    if (env.DISABLE_REGISTRATION) {
+      return customError(c, "AUTH_REGISTRATION_DISABLED");
+    }
 
     if (!parsed.success) {
       return c.json(
@@ -37,6 +45,10 @@ const register: RouteConfig = {
     }
 
     const { name, email, password } = parsed.data;
+
+    if (await db.utils.checkUsernameExists(name)) {
+      return customError(c, "AUTH_USERNAME_ALREADY_EXISTS");
+    }
 
     try {
       const user = await auth.api.signUpEmail({
@@ -60,11 +72,10 @@ const register: RouteConfig = {
         error?.body?.message?.includes("already exists") ||
         error?.status === 422
       ) {
-        // Better-auth returns 422/500 for constraint violations sometimes
         return customError(c, "AUTH_EMAIL_ALREADY_EXISTS");
       }
 
-      // Fallback
+      logger.error(error.body);
       return customError(c, "INTERNAL_SERVER_ERROR");
     }
   },

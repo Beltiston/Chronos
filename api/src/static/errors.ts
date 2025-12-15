@@ -3,7 +3,9 @@ export type ErrorId =
   | "USER_NOT_FOUND"
   | "INTERNAL_SERVER_ERROR"
   | "VALIDATION_ERROR"
-  | "AUTH_EMAIL_ALREADY_EXISTS";
+  | "AUTH_EMAIL_ALREADY_EXISTS"
+  | "AUTH_REGISTRATION_DISABLED"
+  | "AUTH_USERNAME_ALREADY_EXISTS";
 
 export interface ErrorDetails {
   id: ErrorId;
@@ -16,6 +18,16 @@ export const ERRORS: Record<ErrorId, ErrorDetails> = {
     id: "VALIDATION_ERROR",
     status: 400,
     message: "Invalid input",
+  },
+  AUTH_REGISTRATION_DISABLED: {
+    id: "AUTH_REGISTRATION_DISABLED",
+    status: 403,
+    message: "Registration is disabled",
+  },
+  AUTH_USERNAME_ALREADY_EXISTS: {
+    id: "AUTH_USERNAME_ALREADY_EXISTS",
+    status: 409,
+    message: "Username already exists",
   },
   USER_NOT_FOUND: {
     id: "USER_NOT_FOUND",
