@@ -1,9 +1,9 @@
 import { betterAuth } from "better-auth";
-import { bearer } from "better-auth/plugins";
+import { jwtClient } from "better-auth/client/plugins";
+import { jwt } from "better-auth/plugins";
 
 import { env } from "@/utils/env";
-
-import { authSqlite, sqlite } from "@/db/auth";
+import { sqlite } from "@/db/auth";
 
 export type Auth = ReturnType<typeof betterAuth>;
 
@@ -14,5 +14,5 @@ export const auth: Auth = betterAuth({
     enabled: true,
     disableSignUp: env.DISABLE_REGISTRATION === true,
   },
-  plugins: [bearer()],
+  plugins: [jwt(), jwtClient()],
 });

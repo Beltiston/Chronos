@@ -15,7 +15,7 @@ const registerSchema = z.object({
 
 const register: RouteConfig = {
   method: Method.POST,
-  endpoint: "/api/register",
+  endpoint: "/auth/register",
   rateLimit: {
     windowMs: 15 * 60 * 1000,
     limit: 5,

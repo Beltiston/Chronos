@@ -14,7 +14,7 @@ const createOAuthInstanceSchema = z.object({
 
 const createOAuthInstance: RouteConfig = {
   method: Method.POST,
-  endpoint: "/api/oauth/instances",
+  endpoint: "/oauth/instances",
   rateLimit: {
     windowMs: 15 * 60 * 1000,
     limit: 10,

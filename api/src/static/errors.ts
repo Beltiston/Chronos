@@ -6,6 +6,7 @@ export type ErrorId =
   | "AUTH_EMAIL_ALREADY_EXISTS"
   | "AUTH_REGISTRATION_DISABLED"
   | "AUTH_USERNAME_ALREADY_EXISTS"
+  | "AUTH_INVALID_CREDENTIALS"
   | "OAUTH_INVALID_PROVIDER"
   | "OAUTH_INSTANCE_ALREADY_EXISTS"
   | "OAUTH_INSTANCE_NOT_FOUND";
@@ -26,6 +27,11 @@ export const ERRORS: Record<ErrorId, ErrorDetails> = {
     id: "AUTH_REGISTRATION_DISABLED",
     status: 403,
     message: "Registration is disabled",
+  },
+  AUTH_INVALID_CREDENTIALS: {
+    id: "AUTH_INVALID_CREDENTIALS",
+    status: 401,
+    message: "Invalid email or password",
   },
   AUTH_USERNAME_ALREADY_EXISTS: {
     id: "AUTH_USERNAME_ALREADY_EXISTS",
