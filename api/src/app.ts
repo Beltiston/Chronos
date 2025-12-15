@@ -3,11 +3,28 @@ import { logger } from "./utils/logger";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { registerRoutes } from "./utils/routeHandler";
+import { auth } from "./auth";
+import { sessionMiddleware } from "./middleware/session";
 
-const app = new Hono();
+import { env } from "./utils/env";
+
+const app = new Hono<{
+  Variables: {
+    user: typeof auth.$Infer.Session.user | null;
+    session: typeof auth.$Infer.Session.session | null;
+  };
+}>();
+
+app.use("*", sessionMiddleware);
 
 // CORS
 app.use("/v1/*", cors({ origin: "*" }));
+
+// Auth
+
+app.on(["POST", "GET"], "/api/auth/*", (c) => {
+  return auth.handler(c.req.raw);
+});
 
 await bootstrap();
 
