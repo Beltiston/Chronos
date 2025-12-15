@@ -7,13 +7,9 @@ import { auth } from "./auth";
 import { sessionMiddleware } from "./middleware/session";
 
 import { env } from "./utils/env";
+import { HonoEnv } from "./types";
 
-const app = new Hono<{
-  Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null;
-  };
-}>();
+const app = new Hono<HonoEnv>();
 
 app.use("*", sessionMiddleware);
 

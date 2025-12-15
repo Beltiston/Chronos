@@ -76,7 +76,6 @@ export async function registerRoutes(
               route.rateLimit ?? {
                 windowMs: 15 * 60 * 1000, // 15 minutes
                 limit: 100, // Limit each user to 100 requests per windowMs
-                message: "Too many requests, please try again after 15 minutes",
               }
             )
           );

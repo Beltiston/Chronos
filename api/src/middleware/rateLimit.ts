@@ -13,18 +13,14 @@ import { customError } from "../utils/errors";
 export const createRateLimiter = (options?: {
   windowMs?: number;
   limit?: number;
-  message?: string;
   keyGenerator?: (c: Context<HonoEnv>) => string;
 }) => {
   const windowMs = options?.windowMs ?? 60 * 1000; // 1 minute default
   const limit = options?.limit ?? 100; // 100 requests per minute default
-  const message =
-    options?.message ?? "Too many requests, please try again later.";
 
   return rateLimiter<HonoEnv>({
     windowMs,
     limit,
-    message,
     handler: (c) => {
       // Return structured JSON error
       return customError(c, "RATE_LIMIT_EXCEEDED");

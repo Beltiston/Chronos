@@ -17,6 +17,5 @@ export interface RouteConfig {
   rateLimit?: {
     windowMs?: number;
     limit?: number;
-    message?: string;
   };
 }
