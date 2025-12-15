@@ -4,6 +4,14 @@ export default defineConfig({
   test: {
     environment: "node",
     globals: true,
-    include: ["src/__test__/**/*.ts"]
-  }
+    include: ["src/__test__/**/*.ts"],
+    alias: {
+      "@": "/src",
+    },
+  },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
 });

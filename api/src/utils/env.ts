@@ -2,7 +2,9 @@ import { z } from "zod";
 import { logger } from "./logger";
 
 const envSchema = z.object({
-  CHRONOS_ENV: z.enum(["development", "production", "test"]).default("development"),
+  CHRONOS_ENV: z
+    .enum(["development", "production", "test"])
+    .default("development"),
 
   // Database
   DATABASE_ENTRY: z.string().default("/db/main.db"),
@@ -16,9 +18,12 @@ const envSchema = z.object({
       (v) => v.startsWith("http://") || v.startsWith("https://"),
       "BETTER_AUTH_URL must be a URL"
     ),
-    
+
   // Auth-related
-  DISABLE_REGISTRATION: z.string().default("false").transform(v => v === "true"),
+  DISABLE_REGISTRATION: z
+    .string()
+    .default("false")
+    .transform((v) => v === "true"),
 
   // Server
   PORT: z
@@ -38,11 +43,11 @@ if (!parsed.success) {
       logger.error(`  • ${key}: ${msg}`);
     });
   });
-  
+
   process.exit(1);
 }
 
 export const env = {
   ...parsed.data,
-  CLIENT_ORIGIN: parsed.data.CLIENT_ORIGIN ?? `http://localhost:${parsed.data.PORT}`,
-};
+  CLIENT_ORIGIN: parsed.data?.CLIENT_ORIGIN ?? "http://localhost:3000",
+} as z.infer<typeof envSchema> & { CLIENT_ORIGIN: string };

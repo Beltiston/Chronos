@@ -29,8 +29,8 @@ dist
 .temp
 
 # dotenv environment variable files
-.env
 .env.*
+!.env
 !.env.example
 
 # Nix
