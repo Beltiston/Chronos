@@ -1,5 +1,5 @@
 {
-  "name": "chronos",
+  "name": "chronos-backend",
   "version": "0.1.3",
   "description": "",
   "main": "dist/index.js",
@@ -55,7 +55,7 @@
     "vitest": "^4.0.15"
   },
   "commit-and-tag-version": {
-    "output": "../CHANGELOG.md",
+    "output": "CHANGELOG.md",
     "types": [
       {
         "type": "feat",

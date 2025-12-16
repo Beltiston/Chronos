@@ -10,7 +10,7 @@ const generateToken: RouteConfig = {
     windowMs: 15 * 60 * 1000,
     limit: 10,
   },
-  private: true, // Requires better-auth session
+  private: true,
   handler: async (c) => {
     const session = c.get("session");
     const authUser = c.get("user");
@@ -36,7 +36,7 @@ const generateToken: RouteConfig = {
         code: 200,
         data: {
           token,
-          expiresIn: "30d",
+          expiresIn: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
           user: {
             id: user.id,
             username: user.username,

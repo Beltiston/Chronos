@@ -1,7 +1,4 @@
 import { betterAuth } from "better-auth";
-import { jwtClient } from "better-auth/client/plugins";
-import { jwt } from "better-auth/plugins";
-
 import { env } from "@/utils/env";
 import { sqlite } from "@/db/auth";
 
@@ -14,5 +11,4 @@ export const auth: Auth = betterAuth({
     enabled: true,
     disableSignUp: env.DISABLE_REGISTRATION === true,
   },
-  plugins: [jwt(), jwtClient()],
 });
