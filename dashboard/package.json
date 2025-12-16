@@ -1,0 +1,102 @@
+{
+  "name": "chronos-frontend",
+  "version": "0.1.0",
+  "description": "Web dashboard for Chronos, a self-hosted time tracking and activity insights platform.",
+  "main": "dist/index.js",
+  "type": "module",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "LGPL-3.0-or-later",
+  "packageManager": "pnpm@10.25.0",
+  "scripts": {
+    "preinstall": "npx --yes only-allow pnpm",
+    "preupdate": "npx --yes only-allow pnpm",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "release": "commit-and-tag-version"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-progress": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.561.0",
+    "next": "16.0.10",
+    "next-themes": "^0.4.6",
+    "nodemon": "^3.1.11",
+    "radix-ui": "^1.4.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "recharts": "^3.6.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^25.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "commit-and-tag-version": "^12.6.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.10",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "commit-and-tag-version": {
+    "output": "CHANGELOG.md",
+    "types": [
+      {
+        "type": "feat",
+        "section": "✨ Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Documentation"
+      },
+      {
+        "type": "refactor",
+        "section": "⚙️ Refactor"
+      },
+      {
+        "type": "perf",
+        "section": "⚡ Performance"
+      },
+      {
+        "type": "test",
+        "section": "🧪 Test"
+      },
+      {
+        "type": "chore",
+        "section": "🔧 Chores"
+      },
+      {
+        "type": "ci",
+        "section": "🤖 Integration",
+        "hidden": true
+      }
+    ],
+    "commitUrlFormat": "https://github.com/Beltiston/Chronos/commit/{{hash}}",
+    "compareUrlFormat": "https://github.com/Beltiston/Chronos/compare/{{previousTag}}...{{currentTag}}",
+    "issueUrlFormat": "https://github.com/Beltiston/Chronos/issue/{{id}}"
+  }
+}
