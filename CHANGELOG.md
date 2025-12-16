@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.4](https://github.com/Beltiston/Chronos/compare/v0.1.3...v0.1.4) (2025-12-16)
+
+
+### ✨ Features
+
+* **dashboard:** Initial commit for dashboard. ([bc9080d](https://github.com/Beltiston/Chronos/commit/bc9080d40188ec373f5bc039c64a43841b1c46f3))
+* introduce JWT-based API token generation and verification with a new auth route and session middleware integration. ([fc98a80](https://github.com/Beltiston/Chronos/commit/fc98a80d72ad3dc6888240aa1fc925e4e08540c8))
+
+
+### 🔧 Chores
+
+* **api:** Cleanup ([cf683ea](https://github.com/Beltiston/Chronos/commit/cf683eac72af143fc1b55e0aecaedf6ab44b92d2))
+
 ## [0.1.3](https://github.com/Beltiston/Chronos/compare/v0.1.2...v0.1.3) (2025-12-15)
 
 
