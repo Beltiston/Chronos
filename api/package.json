@@ -8,6 +8,7 @@
     "preinstall": "npx --yes only-allow pnpm",
     "preupdate": "npx --yes only-allow pnpm",
     "build": "tsc -p tsconfig.build.json",
+    "build:docs": "dotenvx run -- tsx -r tsconfig-paths/register src/utils/openapi.ts",
     "db": "dotenvx run -- tsx scripts/database.ts",
     "db:create": "dotenvx run -- tsx scripts/database.ts create",
     "db:migrate": "dotenvx run -- tsx scripts/database.ts migrate",
