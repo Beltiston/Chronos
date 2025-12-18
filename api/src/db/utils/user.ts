@@ -1,5 +1,4 @@
-import db from "@/db";
-import { DatabaseSchema } from "@/types/databaseSchema";
+import db from "../index.js";
 import { nanoid } from "nanoid";
 
 interface UserParams {

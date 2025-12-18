@@ -1,6 +1,6 @@
-import { auth } from "@/auth";
-import { Method, RouteConfig } from "@/types/route";
-import { customError } from "@/utils/submit";
+import { auth } from "../../auth.js";
+import { Method, RouteConfig } from "../../types/route.js";
+import { customError } from "../../utils/submit.js";
 
 const login: RouteConfig = {
   method: Method.POST,

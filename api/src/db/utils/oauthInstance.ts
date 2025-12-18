@@ -1,5 +1,5 @@
-import db from "@/db";
-import { OAuthProvider } from "@/types/oauthProvider";
+import db from "../index.js";
+import { OAuthProvider } from "../../types/oauthProvider.js";
 
 interface CreateOAuthInstanceParams {
   userId: string;

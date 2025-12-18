@@ -15,7 +15,7 @@
     "auth:generate": "NODE_OPTIONS='-r tsconfig-paths/register' dotenvx run -- better-auth generate --config ./src/auth.ts",
     "auth:migrate": "NODE_OPTIONS='-r tsconfig-paths/register' dotenvx run -- better-auth migrate --config ./src/auth.ts",
     "dev": "dotenvx run -- nodemon --watch src --ext ts,tsx --exec tsx -r tsconfig-paths/register src/index.ts",
-    "start": "node -r tsconfig-paths/register dist/index.js",
+    "start": "dotenvx run -- node -r tsconfig-paths/register dist/index.js",
     "release": "commit-and-tag-version",
     "test": "vitest",
     "test:nix": "vitest run __test__/nix",

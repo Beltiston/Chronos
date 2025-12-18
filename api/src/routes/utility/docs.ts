@@ -1,4 +1,4 @@
-import { Method, RouteMiddleware } from "@/types/route";
+import { Method, RouteMiddleware } from "../../types/route.js";
 import { Scalar } from "@scalar/hono-api-reference";
 
 const docs: RouteMiddleware = {

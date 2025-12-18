@@ -1,11 +1,12 @@
 import { z } from "zod";
-import { Method, RouteConfig } from "@/types/route";
-import { auth } from "@/auth";
-import { customError } from "@/utils/submit";
-import { EMAIL_REGEX } from "@/utils/regex";
-import { logger } from "@/utils/logger";
-import { env } from "@/utils/env";
-import db from "@/db";
+
+import { Method, RouteConfig } from "../../types/route.js";
+import { auth } from "../../auth.js";
+import { customError } from "../../utils/submit.js";
+import { EMAIL_REGEX } from "../../utils/regex.js";
+import { logger } from "../../utils/logger.js";
+import { env } from "../../utils/env.js";
+import db from "../../db/index.js";
 
 const registerSchema = z.object({
   name: z.string().min(2),

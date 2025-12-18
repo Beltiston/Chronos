@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { ERRORS, ErrorId } from "../static/errors.js";
-import { SuccessResponse } from "@/types/route";
+import { SuccessResponse } from "../types/route.js";
 import { ContentfulStatusCode } from "hono/utils/http-status";
 
 export function customError(c: Context, errorId: ErrorId, origin?: string) {

@@ -1,4 +1,4 @@
-import { Method, RouteConfig, RouteVersion } from "@/types/route";
+import { Method, RouteConfig, RouteVersion } from "../../types/route.js";
 
 const getSession: RouteConfig = {
   method: Method.GET,

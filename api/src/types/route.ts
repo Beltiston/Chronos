@@ -1,5 +1,4 @@
 import type { MiddlewareHandler, Context } from "hono";
-import type { Server } from "openapi3-ts";
 import type { DescribeRouteOptions } from "hono-openapi";
 
 export enum Method {

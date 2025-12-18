@@ -1,7 +1,7 @@
-import { Method, RouteConfig, RouteVersion } from "@/types/route";
-import { customError } from "@/utils/submit";
-import { generateApiToken } from "@/utils/jwt";
-import db from "@/db";
+import { Method, RouteConfig, RouteVersion } from "../../types/route.js";
+import { customError } from "../../utils/submit.js";
+import { generateApiToken } from "../../utils/jwt.js";
+import db from "../../db/index.js";
 
 const generateToken: RouteConfig = {
   endpoint: "/auth/token",

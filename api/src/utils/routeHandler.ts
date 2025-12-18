@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 import { describeRoute } from "hono-openapi";
 
-import { Method, RouteConfig, RouteVersion } from "@/types/route";
+import { Method, RouteConfig, RouteVersion } from "../types/route.js";
 import { logger } from "./logger.js";
 import { requireUser } from "../middleware/requireUser.js";
 import { createRateLimiter } from "../middleware/rateLimit.js";
@@ -12,8 +12,8 @@ import { createRateLimiter } from "../middleware/rateLimit.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const isDev = process.env.NODE_ENV !== "production";
-const exts = isDev ? [".ts"] : [".js"];
+const isTS = __filename.endsWith(".ts");
+const exts = isTS ? [".ts"] : [".js"];
 
 export async function registerRoutes(
   app: Hono<any>,
@@ -29,6 +29,7 @@ export async function registerRoutes(
         files = files.concat(walk(fullPath)); // recurse subdirs
       } else if (
         exts.some((e) => fullPath.endsWith(e)) &&
+        !fullPath.endsWith(".d.ts") &&
         !path.basename(fullPath).startsWith("_")
       ) {
         files.push(fullPath);

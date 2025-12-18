@@ -1,5 +1,5 @@
-import { Method, RouteConfig, RouteVersion } from "@/types/route";
-import { customSuccess } from "@/utils/submit";
+import { Method, RouteConfig, RouteVersion } from "../../types/route.js";
+import { customSuccess } from "../../utils/submit.js";
 
 const health: RouteConfig = {
   endpoint: "health",

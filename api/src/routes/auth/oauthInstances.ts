@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { Method, RouteConfig } from "@/types/route";
-import { customError } from "@/utils/submit";
-import { logger } from "@/utils/logger";
-import db from "@/db";
-import { ALLOWED_OAUTH_PROVIDERS } from "@/types/oauthProvider";
+import { Method, RouteConfig } from "../../types/route.js";
+import { customError } from "../../utils/submit.js";
+import { logger } from "../../utils/logger.js";
+import db from "../../db/index.js";
+import { ALLOWED_OAUTH_PROVIDERS } from "../../types/oauthProvider.js";
 
 const createOAuthInstanceSchema = z.object({
   provider: z.enum(ALLOWED_OAUTH_PROVIDERS),

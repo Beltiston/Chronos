@@ -1,5 +1,5 @@
 import { Generated } from "kysely";
-import { OAuthProvider } from "./oauthProvider";
+import { OAuthProvider } from "./oauthProvider.js";
 
 export interface DatabaseSchema {
   migrations: {

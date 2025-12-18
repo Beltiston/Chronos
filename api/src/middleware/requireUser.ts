@@ -1,4 +1,4 @@
-import { customError } from "@/utils/submit";
+import { customError } from "../utils/submit.js";
 import { Context, Next } from "hono";
 
 export function requireUser(options?: { roles?: string[] }) {
