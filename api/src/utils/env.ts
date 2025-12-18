@@ -33,6 +33,8 @@ const envSchema = z.object({
     .string()
     .default("3000")
     .transform((v) => Number(v)),
+
+  API_ORIGIN: z.string().default("http://localhost:3000"),
 });
 
 const parsed = envSchema.safeParse(process.env);

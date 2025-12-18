@@ -27,6 +27,7 @@ node_modules/
 .eslintcache
 dist
 .temp
+openapi.json
 
 # dotenv environment variable files
 .env.*
