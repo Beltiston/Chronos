@@ -2,6 +2,7 @@
   "files.exclude": {
     "**/.git": true,
   },
+  "json.schemaDownload.enable": true,
   // Licensing
   "license.author": "Beltiston",
   "license.year": "auto",
