@@ -52,5 +52,5 @@ if (!parsed.success) {
 
 export const env = {
   ...parsed.data,
-  CLIENT_ORIGIN: parsed.data?.CLIENT_ORIGIN ?? "http://localhost:3000",
+  CLIENT_ORIGIN: parsed.data?.CLIENT_ORIGIN ?? "http://localhost:4480",
 } as z.infer<typeof envSchema> & { CLIENT_ORIGIN: string };

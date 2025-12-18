@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { Bell, Search, Menu } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Bell, Search, Menu, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ui/buttons/themeToggle";
@@ -14,14 +14,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { matchesShortcut, KEYBOARD_SHORTCUTS } from "@/lib/keyboardShortcuts";
 import { ShortcutHint } from "../ui/shortcut-hint";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { NavigationLinks } from "./navigation-links";
+import Link from "next/link";
+
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+      const searchShortcut = KEYBOARD_SHORTCUTS.find(s => s.id === "search");
+      if (searchShortcut && matchesShortcut(event, searchShortcut.combo)) {
         event.preventDefault();
         searchInputRef.current?.focus();
       }
@@ -34,10 +47,33 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-6">
       {/* Mobile Menu Toggle */}
-      <Button variant="ghost" size="icon" className="lg:hidden">
-        <Menu className="h-5 w-5" />
-        <span className="sr-only">Toggle menu</span>
-      </Button>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" className="lg:hidden">
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-72 p-0">
+          <SheetHeader className="p-6 border-b">
+            <SheetTitle className="text-left">
+              <Link 
+                href="/dashboard" 
+                className="flex items-center gap-2 font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                  <Clock className="h-5 w-5" />
+                </div>
+                <span className="text-lg">Chronos</span>
+              </Link>
+            </SheetTitle>
+          </SheetHeader>
+          <div className="p-4">
+            <NavigationLinks onLinkClick={() => setIsOpen(false)} />
+          </div>
+        </SheetContent>
+      </Sheet>
 
       {/* Search */}
       <div className="max-w-md flex-1">

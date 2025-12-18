@@ -2,7 +2,7 @@ import { Method, RouteConfig } from "@/types/route";
 
 const getSession: RouteConfig = {
   method: Method.GET,
-  endpoint: "/session",
+  endpoint: "/auth/session",
   rateLimit: {
     windowMs: 15 * 60 * 1000, // 15 minutes
     limit: 100, // Limit each user to 100 requests per windowMs

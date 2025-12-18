@@ -15,9 +15,25 @@ app.use("*", sessionMiddleware);
 
 // CORS
 app.use("/v1/*", cors({ origin: "*" }));
+app.use("/auth/*", async (c, next) => {
+  const origin = c.req.header("Origin") || "";
+
+  if (origin === "http://localhost:4480") {
+    c.header("Access-Control-Allow-Origin", origin);
+  }
+
+  c.header("Access-Control-Allow-Credentials", "true");
+  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (c.req.method === "OPTIONS") {
+    return c.text("OK", 200);
+  }
+
+  return next();
+});
 
 // Auth
-
 app.on(["POST", "GET"], "/api/auth/*", (c) => {
   return auth.handler(c.req.raw);
 });

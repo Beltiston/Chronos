@@ -6,15 +6,21 @@
   "type": "module",
   "private": true,
   "keywords": [],
-  "author": "",
+  "author": "Lynnux",
+  "contributors": [
+    {
+      "name": "Lynnux",
+      "url": "https://github.com/Dark-Lynn"
+    }
+  ],
   "license": "LGPL-3.0-or-later",
   "packageManager": "pnpm@10.25.0",
   "scripts": {
     "preinstall": "npx --yes only-allow pnpm",
     "preupdate": "npx --yes only-allow pnpm",
-    "dev": "next dev",
+    "dev": "dotenvx run -- next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "dotenvx run -- next start",
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
