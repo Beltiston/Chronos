@@ -2,7 +2,7 @@ import { rateLimiter } from "hono-rate-limiter";
 import { Context, Env } from "hono";
 
 import { HonoEnv } from "@/types";
-import { customError } from "../utils/errors";
+import { customError } from "../utils/submit";
 
 /**
  * Creates a rate limiting middleware.

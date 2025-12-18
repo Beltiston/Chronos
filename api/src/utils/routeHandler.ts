@@ -2,7 +2,9 @@ import { Hono, MiddlewareHandler } from "hono";
 import { fileURLToPath, pathToFileURL } from "url";
 import path from "path";
 import fs from "fs";
-import { Method, RouteConfig } from "@/types/route";
+import { describeRoute } from "hono-openapi";
+
+import { Method, RouteConfig, RouteVersion } from "@/types/route";
 import { logger } from "./logger.js";
 import { requireUser } from "../middleware/requireUser.js";
 import { createRateLimiter } from "../middleware/rateLimit.js";
@@ -92,12 +94,67 @@ export async function registerRoutes(
           | "put"
           | "delete";
 
-        (app as any)[httpMethod](route.endpoint, ...middlewares, route.handler);
+        const version = route.version ?? RouteVersion.STABLE;
+        const prefixes: string[] = [];
 
-        // Force flush the log immediately
-        logger.info(
-          `[Route] Registered ${Method[route.method]} ${route.endpoint}`
-        );
+        if (route.standalone) {
+          prefixes.push("");
+        } else if (version === RouteVersion.STABLE) {
+          prefixes.push("/v1", "/v2", "/v3");
+        } else if (version === RouteVersion.BETA) {
+          prefixes.push("/v2", "/v3");
+        } else if (version === RouteVersion.ALPHA) {
+          prefixes.push("/v3");
+        }
+
+        // 1. Register the plain endpoint with OpenAPI middleware if it's not a standalone route
+        // This ensures the endpoint appears once in the OpenAPI spec without version prefixes.
+        // If it is standalone, it's already registered once with everything below.
+        if (!route.standalone) {
+          const plainEndpoint = route.endpoint.startsWith("/")
+            ? route.endpoint
+            : `/${route.endpoint}`;
+
+          const openapiMiddlewares = [...middlewares];
+          if (route.openapi) {
+            openapiMiddlewares.push(describeRoute(route.openapi));
+          }
+
+          (app as any)[httpMethod](
+            plainEndpoint,
+            ...openapiMiddlewares,
+            route.handler
+          );
+          logger.info(
+            `[Route] Registered ${
+              Method[route.method]
+            } ${plainEndpoint} (openapi)`
+          );
+        }
+
+        // 2. Register all versioned routes (or standalone) without describeRoute
+        for (const prefix of prefixes) {
+          const fullEndpoint = `${prefix}${
+            route.endpoint.startsWith("/") ? "" : "/"
+          }${route.endpoint}`;
+
+          // Add describeRoute only for standalone routes (since they won't have a "plain" registration)
+          const versionedMiddlewares = [...middlewares];
+          if (route.standalone && route.openapi) {
+            versionedMiddlewares.push(describeRoute(route.openapi));
+          }
+
+          (app as any)[httpMethod](
+            fullEndpoint,
+            ...versionedMiddlewares,
+            route.handler
+          );
+          logger.info(
+            `[Route] Registered ${
+              Method[route.method]
+            } ${fullEndpoint} (${version})`
+          );
+        }
       }
     } catch (err) {
       logger.error(`Failed to load route file: ${file}`);

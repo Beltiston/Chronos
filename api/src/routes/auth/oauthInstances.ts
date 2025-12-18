@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Method, RouteConfig } from "@/types/route";
-import { customError } from "@/utils/errors";
+import { customError } from "@/utils/submit";
 import { logger } from "@/utils/logger";
 import db from "@/db";
 import { ALLOWED_OAUTH_PROVIDERS } from "@/types/oauthProvider";
@@ -81,6 +81,136 @@ const createOAuthInstance: RouteConfig = {
       logger.error(error);
       return customError(c, "INTERNAL_SERVER_ERROR");
     }
+  },
+  openapi: {
+    summary: "Create OAuth Instance",
+    description:
+      "Create a new OAuth instance. \n\n" +
+      "**RATELIMIT:** `10` requests per `15` minutes.",
+    tags: ["auth"],
+    responses: {
+      201: {
+        description: "OAuth instance created",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/SuccessResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    data: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "instance-id" },
+                        provider: { type: "string", example: "google" },
+                        clientId: { type: "string", example: "client-id" },
+                        redirectUri: {
+                          type: "string",
+                          example: "redirect-uri",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      400: {
+        description: "Validation error",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "INPUT_ERROR" },
+                        status: { type: "number", example: 429 },
+                        message: {
+                          type: "string",
+                          example: "Invalid input",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      404: {
+        description: "User not found",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "USER_NOT_FOUND" },
+                        status: { type: "number", example: 404 },
+                        message: {
+                          type: "string",
+                          example: "The requested user does not exist",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      429: {
+        description: "Too many requests",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "TOO_MANY_REQUESTS" },
+                        status: { type: "number", example: 429 },
+                        message: {
+                          type: "string",
+                          example: "Too many requests, please try again later",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
   },
 };
 

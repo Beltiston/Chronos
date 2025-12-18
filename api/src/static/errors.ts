@@ -3,6 +3,8 @@ export type ErrorId =
   | "USER_NOT_FOUND"
   | "INTERNAL_SERVER_ERROR"
   | "VALIDATION_ERROR"
+  | "UNAUTHORIZED"
+  | "FORBIDDEN"
   | "AUTH_EMAIL_ALREADY_EXISTS"
   | "AUTH_REGISTRATION_DISABLED"
   | "AUTH_USERNAME_ALREADY_EXISTS"
@@ -22,6 +24,16 @@ export const ERRORS: Record<ErrorId, ErrorDetails> = {
     id: "VALIDATION_ERROR",
     status: 400,
     message: "Invalid input",
+  },
+  UNAUTHORIZED: {
+    id: "UNAUTHORIZED",
+    status: 401,
+    message: "Unauthorized",
+  },
+  FORBIDDEN: {
+    id: "FORBIDDEN",
+    status: 403,
+    message: "Forbidden",
   },
   AUTH_REGISTRATION_DISABLED: {
     id: "AUTH_REGISTRATION_DISABLED",

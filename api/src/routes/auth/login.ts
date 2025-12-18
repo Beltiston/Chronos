@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { Method, RouteConfig } from "@/types/route";
-import { customError } from "@/utils/errors";
+import { customError } from "@/utils/submit";
 
 const login: RouteConfig = {
   method: Method.POST,
@@ -33,6 +33,133 @@ const login: RouteConfig = {
       console.log(error);
       return c.json({ success: false, code: 500, error }, 500);
     }
+  },
+  openapi: {
+    summary: "Login to your account",
+    description: "Login to your account",
+    tags: ["auth"],
+    responses: {
+      200: {
+        description: "Login successful",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/SuccessResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    data: {
+                      type: "object",
+                      properties: {
+                        session: {
+                          type: "object",
+                          properties: {
+                            token: { type: "string", example: "session-token" },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      400: {
+        description: "Validation error",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "INPUT_ERROR" },
+                        status: { type: "number", example: 429 },
+                        message: {
+                          type: "string",
+                          example: "Invalid input",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      404: {
+        description: "User not found",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "USER_NOT_FOUND" },
+                        status: { type: "number", example: 404 },
+                        message: {
+                          type: "string",
+                          example: "The requested user does not exist",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      429: {
+        description: "Too many requests",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "TOO_MANY_REQUESTS" },
+                        status: { type: "number", example: 429 },
+                        message: {
+                          type: "string",
+                          example: "Too many requests, please try again later",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
   },
 };
 

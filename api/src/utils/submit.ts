@@ -1,5 +1,7 @@
 import { Context } from "hono";
 import { ERRORS, ErrorId } from "../static/errors";
+import { SuccessResponse } from "@/types/route";
+import { ContentfulStatusCode } from "hono/utils/http-status";
 
 export function customError(c: Context, errorId: ErrorId, origin?: string) {
   const error = ERRORS[errorId];
@@ -29,4 +31,18 @@ export function customError(c: Context, errorId: ErrorId, origin?: string) {
     },
     error.status as any
   );
+}
+
+export function customSuccess<T = any>(
+  c: Context,
+  data: T,
+  status: ContentfulStatusCode
+): Response {
+  const body: SuccessResponse<T> = {
+    success: true,
+    code: status,
+    data,
+  };
+
+  return c.json(body, status);
 }

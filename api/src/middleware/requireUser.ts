@@ -1,3 +1,4 @@
+import { customError } from "@/utils/submit";
 import { Context, Next } from "hono";
 
 export function requireUser(options?: { roles?: string[] }) {
@@ -5,10 +6,10 @@ export function requireUser(options?: { roles?: string[] }) {
     const user = c.get("user");
     const session = c.get("session");
 
-    if (!user || !session) return c.json({ error: "Unauthorized" }, 401);
+    if (!user || !session) return customError(c, "UNAUTHORIZED");
 
     if (options?.roles && !options.roles.includes(user.role)) {
-      return c.json({ error: "Forbidden" }, 403);
+      return customError(c, "FORBIDDEN");
     }
 
     return next();

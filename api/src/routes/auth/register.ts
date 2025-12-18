@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { Method, RouteConfig } from "@/types/route";
 import { auth } from "@/auth";
-import { customError } from "@/utils/errors";
+import { customError } from "@/utils/submit";
 import { EMAIL_REGEX } from "@/utils/regex";
 import { logger } from "@/utils/logger";
 import { env } from "@/utils/env";
@@ -83,6 +83,82 @@ const register: RouteConfig = {
       logger.error(error.body);
       return customError(c, "INTERNAL_SERVER_ERROR");
     }
+  },
+  openapi: {
+    deprecated: false,
+    tags: ["auth"],
+    externalDocs: {
+      description: "Open source-code",
+      url: "https://github.com/Beltiston/Chronos/blob/main/api/src/routes/auth/register.ts",
+    },
+    summary: "Register a new user",
+    description:
+      "Register a new user. \n\n" +
+      "**RATELIMIT:** `5` requests per `15` minutes.",
+    responses: {
+      201: {
+        description: "User registered",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/SuccessResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    data: {
+                      type: "object",
+                      properties: {
+                        user: {
+                          type: "object",
+                          properties: {
+                            id: { type: "string", example: "user-id" },
+                            username: { type: "string", example: "username" },
+                            role: { type: "string", example: "user" },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+      429: {
+        description: "Too many requests",
+        content: {
+          "application/json": {
+            schema: {
+              allOf: [
+                {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+                {
+                  type: "object",
+                  properties: {
+                    error: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string", example: "TOO_MANY_REQUESTS" },
+                        status: { type: "number", example: 429 },
+                        message: {
+                          type: "string",
+                          example: "Too many requests, please try again later",
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
   },
 };
 
