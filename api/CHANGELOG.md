@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.5](https://github.com/Beltiston/Chronos/compare/v0.1.4...v0.1.5) (2025-12-18)
+
+
+### ✨ Features
+
+* **api:** Added API_ORIGIN environment key. ([4fc2811](https://github.com/Beltiston/Chronos/commit/4fc2811b815a66d6e43102bbb0a256388d9e98f8))
+* **api:** implement OpenAPI documentation generation, route versioning, and add new error types ([dac595c](https://github.com/Beltiston/Chronos/commit/dac595c10e6a34cbf823d7b08c4be9e6522b721d))
+* Implement user authentication with login API, session management, and dashboard UI. ([a814e79](https://github.com/Beltiston/Chronos/commit/a814e79a18d133c75b2cef5494acb6b83e96d312))
+
+
+### ⚙️ Refactor
+
+* move customLink component from ui/buttons to ui directory ([aecc46b](https://github.com/Beltiston/Chronos/commit/aecc46b2db0a59d7ecc7e4510442f12964d01d08))
+
+
+### 🔧 Chores
+
+* **api:** Installed Scalar for API docs/references. ([5d1a119](https://github.com/Beltiston/Chronos/commit/5d1a119364805f804f11578feaa2fbe1a797f2ea))
+
 ## [0.1.4](https://github.com/Beltiston/Chronos/compare/v0.1.3...v0.1.4) (2025-12-16)
 
 
