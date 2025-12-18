@@ -1,7 +1,7 @@
 import { Context, Next } from "hono";
-import { auth } from "../auth";
-import { verifyApiToken } from "../utils/jwt";
-import db from "../db";
+import { auth } from "../auth.js";
+import { verifyApiToken } from "../utils/jwt.js";
+import db from "../db/index.js";
 
 export async function sessionMiddleware(c: Context, next: Next) {
   // First, try to get JWT token from Authorization header

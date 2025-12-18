@@ -2,11 +2,11 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serveStatic } from "@hono/node-server/serve-static";
 
-import { auth } from "./auth";
-import { HonoEnv } from "./types";
-import { logger } from "./utils/logger";
-import { registerRoutes } from "./utils/routeHandler";
-import { sessionMiddleware } from "./middleware/session";
+import { auth } from "./auth.js";
+import { HonoEnv } from "./types/index.js";
+import { logger } from "./utils/logger.js";
+import { registerRoutes } from "./utils/routeHandler.js";
+import { sessionMiddleware } from "./middleware/session.js";
 
 const app = new Hono<HonoEnv>();
 

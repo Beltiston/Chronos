@@ -1,2 +1,2 @@
-export * from "./user";
-export * from "./oauthInstance";
+export * from "./user.js";
+export * from "./oauthInstance.js";

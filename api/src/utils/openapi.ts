@@ -1,9 +1,9 @@
 import fs, { readFileSync } from "fs";
 import { generateSpecs } from "hono-openapi";
 
-import app from "../app";
+import app from "../app.js";
 import { resolve } from "path";
-import { env } from "./env";
+import { env } from "./env.js";
 
 const file = "public/openapi.json";
 

@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { ERRORS, ErrorId } from "../static/errors";
+import { ERRORS, ErrorId } from "../static/errors.js";
 import { SuccessResponse } from "@/types/route";
 import { ContentfulStatusCode } from "hono/utils/http-status";
 

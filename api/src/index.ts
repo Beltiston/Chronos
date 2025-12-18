@@ -1,10 +1,10 @@
 /*
  * File: index.ts                                                              *
- * Project: chronos                                                            *
+ * Project: chronos-backend                                                    *
  * Created Date: Sunday, 14th December 2025 5:22:55 pm                         *
  * Author: Lynnux                                                              *
  * -----                                                                       *
- * Last Modified: Sun Dec 14 2025                                              *
+ * Last Modified: Thu Dec 18 2025                                              *
  * Modified By: Lynnux                                                         *
  * -----                                                                       *
  * Copyright (c) 2025 Beltiston                                                *
@@ -15,9 +15,9 @@
  */
 
 import { serve } from "@hono/node-server";
-import app from "./app";
-import { env } from "./utils/env";
-import { logger } from "./utils/logger";
+import app from "./app.js";
+import { env } from "./utils/env.js";
+import { logger } from "./utils/logger.js";
 
 serve({
   fetch: app.fetch,

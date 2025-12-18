@@ -1,7 +1,7 @@
-import { database } from "./kysely";
-import * as func from "./utils";
+import { database } from "./kysely.js";
+import * as func from "./utils/index.js";
 
-import { authSqlite } from "./auth";
+import { authSqlite } from "./auth.js";
 
 const db = {
   client: database,

@@ -4,11 +4,11 @@
     "noEmit": true
   },
   "include": [
-    "src",
-    "scripts"
+    "src"
   ],
   "exclude": [
     "dist",
-    "node_modules"
+    "node_modules",
+    "scripts"
   ]
 }
